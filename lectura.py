@@ -41,7 +41,7 @@ def lecturagrafo(nombre_archivo):
     arrayNodos = []
 
     for node in seccionNodos:
-        nodo = claseNodo.Nodo(node.split()[0], node.split()[1])
+        nodo = claseNodo.NodoMapa(node.split()[0], node.split()[1])
         for aristas in seccionAristas:
             if node.split()[0] == aristas.split()[0]:
                 nodo.agregar_arista(aristas.split()[1], aristas.split()[2])
