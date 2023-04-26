@@ -1,7 +1,8 @@
 class PriorityQueue:
+
     def __init__(self):
         self.queue = []
-
+    
     def is_empty(self):
         return len(self.queue) == 0
 
@@ -18,13 +19,6 @@ class PriorityQueue:
                     self.queue.pop(i)
                     return n
             return None
-        
-    def print_queue(self):
-        if self.is_empty():
-            print("La cola de prioridad está vacía")
-        else:
-            for prioridad, nodo in self.queue:
-                print(f"Prioridad: {prioridad}, Nodo: {nodo.nodo.nombre}")
 
     def get_first_element(self):
         if self.is_empty():
@@ -37,3 +31,10 @@ class PriorityQueue:
             if n == nodo:
                 return (prioridad, n)
         return None
+    
+    def print_queue(self):
+        if self.is_empty():
+            print("La cola de prioridad está vacía")
+        else:
+            for prioridad, nodo in self.queue:
+                print(f"Prioridad: {prioridad}, Nodo: {nodo.nodo.nombre}")

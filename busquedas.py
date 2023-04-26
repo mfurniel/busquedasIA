@@ -2,106 +2,141 @@ import claseNodo
 import random
 import estructuras
 
-def buscarNodo(nombre,mapa_de_nodos):
-        for nodo in mapa_de_nodos:
-             if nodo.nombre == nombre:
-                  return nodo
-    
+# Búsqueda en profundidad (escogiendo un sucesor al azar) o DFS "Depth-First Search"
+def dfs_azar(initial,goal):
+    arbol_decision = claseNodo.ArbolDesicionM(initial,None,0)
+    punta = arbol_decision
 
-def bep_azar(initial,goal,mapa_de_nodos):
+    if initial == goal:
+        return arbol_decision
 
-    raiz = claseNodo.Nodo(initial)
-    # print('num')
-    # print(len(initial.aristas))
-    punta = raiz
-    # print('-')
-    # print(raiz.valor.nombre)
-    # print(raiz.valor.aristas)
-    # print('-')
-    # print('--')
-    num=len(initial.aristas)
-    num=num-1
-    aleatorio = random.randint(0, num)
-    # print(aleatorio)
-    # print('--')
-    # print('---')
-    # print('--x')
+    while punta.nodo != goal:
+        aleatorio = random.randint(0, len(punta.nodo.aristas)-1)
+        nodo_seleccionado = punta.nodo.aristas[aleatorio].nodo
+        aux = claseNodo.ArbolDesicionM(nodo_seleccionado,punta,punta.heuristica + punta.nodo.aristas[aleatorio].heuristica)
+        punta.agregar_nodohijo(aux)
+        punta=aux
+
+    nodo_actual=arbol_decision
+
+    # while True:
+    #     print(nodo_actual.nodo.nombre," ",nodo_actual.heuristica)
+    #     if  len(nodo_actual.nodoshijos)==0:
+    #         break
+    #     nodo_actual = nodo_actual.nodoshijos[0]
+       
+    return arbol_decision
+
+# Búsqueda por costo uniforme o UCS "Uniform Cost Search"
+def ucs(inicial,final):
    
+    nodos_actuales = estructuras.PriorityQueue()
+    arbol_decision = claseNodo.ArbolDesicionM(inicial,None,0)
+    punta = arbol_decision
+    nodos_actuales.insert(punta,punta.heuristica)
+   
+    flag = True
+    while flag:
+        for i in punta.nodo.aristas:         
+            aux = claseNodo.ArbolDesicionM(i.nodo,punta,(int(punta.heuristica) + int(i.heuristica)))
+            punta.agregar_nodohijo(aux)        
+            nodos_actuales.insert(aux,aux.heuristica)
+            if aux.nodo==final:
+                punta = aux
+                flag=False
+                break
+        if punta.nodo == final:
+             break
+        nodos_actuales.delete(punta)
+        punta = nodos_actuales.get_first_element()
+
+    # la punta parte por el nodo final porque puede volver hacia la raiz
+    # por ende tener en cuenta que no esta en orden de initial a goal
+    return punta
+
+def greedy(initial,goal):
+
+    arbol_decision = claseNodo.ArbolDesicionM(initial,None,initial.heuristica)
+    punta = arbol_decision
+
+    if initial == goal:
+        return arbol_decision
+
+    while punta.nodo != goal:
+        # aleatorio = random.randint(0, len(punta.nodo.aristas)-1)
+        # nodo_seleccionado = punta.nodo.aristas[aleatorio].nodo
+        nodo_seleccionado = punta.nodo.aristas[0].nodo
+
+        for a in punta.nodo.aristas:
+            if nodo_seleccionado.heuristica > a.nodo.heuristica:
+                nodo_seleccionado = a.nodo       
+            if nodo_seleccionado.heuristica == a.nodo.heuristica:
+                if random.random()==0:
+                    nodo_seleccionado = a.nodo
+  
+        aux = claseNodo.ArbolDesicionM(nodo_seleccionado,punta,punta.heuristica + nodo_seleccionado.heuristica)
+        punta.agregar_nodohijo(aux)
+        punta=aux
+
+    # nodo_actual=arbol_decision
+
+    # while True:
+    #     print(nodo_actual.nodo.nombre," ",nodo_actual.heuristica)
+    #     if  len(nodo_actual.nodoshijos)==0:
+    #         break
+    #     nodo_actual = nodo_actual.nodoshijos[0]
+       
+    return arbol_decision
+
+    # solucion = []
+    # punta=initial
+
+    # if initial == goal:
+    #      return solucion
+    # else:
+    #       solucion.append(punta)
+
+    # while punta != goal:
+    #     nodo_menor = min(punta.aristas, key=lambda arista: arista.nodo.heuristica).nodo
+    #     punta = nodo_menor
+    #     solucion.append(punta)   
+   
+    # return solucion
     
-    hijo_buscado = buscarNodo(initial.aristas[aleatorio][0],mapa_de_nodos)
-    hoja = claseNodo.Nodo(hijo_buscado)
-    raiz.agregar_hijo(hoja)
-    print(hijo_buscado.nombre)
-    #print('---')
-    punta = raiz.hijos[0]
-    print('zzz')
-    print(punta.valor.nombre)
-    print('zzz')
+def a_estrella(inicial,final):
+    
+    nodos_actuales = estructuras.PriorityQueue()
+    arbol_desicion = claseNodo.ArbolDesicionM(inicial,None,inicial.heuristica)
+    punta = arbol_desicion
+    nodos_actuales.insert(punta,punta.heuristica)
 
-    while punta.valor != goal:
-        print('-')
-        print(punta.valor.aristas)
-        print('-0')
-        auxnum=len(punta.valor.aristas)
-        auxnum=auxnum-1
-        print(auxnum)
-        aleatorio = random.randint(0, auxnum)
-        print('-')
-        hijo_buscado = buscarNodo(punta.valor.aristas[aleatorio][0],mapa_de_nodos)
-        hoja = claseNodo.Nodo(hijo_buscado)
-        punta.agregar_hijo(hoja)
-        punta = punta.hijos[0]
-    print('--raiz--')  
-    raiz.recorrer()
-    print('--raiz--')    
-    return raiz
+    flag = True
+    while flag:
+    
+        for i in punta.nodo.aristas:
+            aux = claseNodo.ArbolDesicionM(i.nodo,punta,(int(i.nodo.heuristica) + int(i.heuristica)))
+            punta.agregar_nodohijo(aux)
+            nodos_actuales.insert(aux,aux.heuristica)
+            #nodos_actuales.print_queue()
 
-def bpcu(inicial,final,mapa_de_nodos):
-    print('-')
-    cola_de_prioridad = estructuras.PriorityQueue()
-    print('--')
-    raiz = claseNodo.Nodo(inicial,0)
-    punta = raiz
-    print('---')
-    num=len(inicial.aristas)
-    num=num
-    print('----')
-    if inicial==final:
-         return final
-    print('-----')
-    for i in range(num):
-        print('-f')
-        hijo_buscado = buscarNodo(inicial.aristas[i][0],mapa_de_nodos)
-        hoja = claseNodo.Nodo(hijo_buscado,int(inicial.aristas[i][1]))
-        cola_de_prioridad.insert(hoja,int(hoja.valor.aristas[i][1]))
-        raiz.agregar_hijo(hoja)
-    print('-----for')
-    punta = cola_de_prioridad.queue[0][1]
-    print(punta.valor.nombre)
-    print('-for')
-    while punta.valor != final:
-        print('-1')
-        num=len(punta.valor.aristas)
-        num=num
-        print('-2')
-        cola_de_prioridad.delete(punta)
-        print('-3')
-        for i in range(num):
-            print('-4for')
-            hijo_buscado = buscarNodo(punta.valor.aristas[i][0],mapa_de_nodos)
-            print('-5for')
-            hoja = claseNodo.Nodo(hijo_buscado,int(punta.valor.aristas[i][1])+punta.costoacumulado)
-            print('-6for')
-            cola_de_prioridad.insert(hoja,int(hoja.costoacumulado))
-            punta.agregar_hijo(hoja)
-        punta = cola_de_prioridad.queue[0][1]
+            if aux.nodo==final:
+                punta = aux
+                flag=False
+                break
+            
+        if punta.nodo == final:
+             break
+        
+        nodos_actuales.delete(punta)
+        punta = nodos_actuales.get_first_element()
+    
+    # while True: 
+    #     print(punta.nodo.nombre,' ', punta.heuristica)
+    #     if punta.nodo_padre == None:
+    #         break
+    #     punta=punta.nodo_padre
 
-    return 0
+    return punta
 
-def bg(inicial,final,mapa):
 
-    return 0
-
-def a_estrella(inicial,final,mapa):
-
-    return 0     
+     
