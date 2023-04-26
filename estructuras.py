@@ -1,3 +1,5 @@
+# Se crea una estructura de datos PriorityQueue
+
 class PriorityQueue:
 
     def __init__(self):

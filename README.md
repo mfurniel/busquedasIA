@@ -11,7 +11,7 @@ Para ejecutar el programa se deben seguir las siguientes instrucciones:
 2. Ejecutar el comando:
 
 ```console
-$ python3 <busqueda> <grafo>
+$ python3 main.py <busqueda> <grafo>
 ```
 donde "busqueda" puede asumir los siguientes valores:
 1. 'dfs'
@@ -24,7 +24,7 @@ y 'grafo' puede ser el nombre del archivo con el grafo a leer, por ejemplo 'graf
 Si no se especifica el nombre del archivo de grafo, se asume que es 'input.txt', por lo que se puede ejecutar el programa de la siguiente manera:
 
 ```console
-$ python3 <busqueda> 
+$ python3 main.py <busqueda> 
 ```
 En este caso, el programa usará 'input.txt' como el archivo de grafo a leer.
 

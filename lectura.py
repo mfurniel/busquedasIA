@@ -1,10 +1,14 @@
 import claseNodo
 
+# Funcion para leer el archivo de entrada del grafo
+
 def lecturagrafo(nombre_archivo):
+    # Se lee el archivo
     archivo = open(nombre_archivo, "r")
     contenido = archivo.readlines()
     archivo.close()
 
+    #Se separa en 3 secciones depurando el texto
     seccionInicialFinal = contenido[0:2]
     seccionNodos = []
     seccionAristas = []
@@ -24,13 +28,15 @@ def lecturagrafo(nombre_archivo):
     nodo_incial_name = seccionInicialFinal[0].split()[1]
     nodo_final_name = seccionInicialFinal[1].split()[1]
 
+    # Estas variables seran de clase nodo o las contendran ya que las variables
+    # anteriores son de texto unicamente.
     nodo_inicial = None
     nodo_final = None
-
     arrayNodos = []
 
+    # Creacion de los nodos y aristas y guardamos los nodos en un array
     for node in seccionNodos:
-        nodo = claseNodo.NodoM(node.split()[0], int(node.split()[1]))
+        nodo = claseNodo.Nodo(node.split()[0], int(node.split()[1]))
         if node.split()[0]==nodo_incial_name:
             nodo_inicial=nodo
         if node.split()[0]==nodo_final_name:
@@ -47,7 +53,8 @@ def lecturagrafo(nombre_archivo):
                 nodo_destino = nodo
             if nodo_origen and nodo_destino:
                 break
-        arista_nueva = claseNodo.AristaM(arista.split()[0]+arista.split()[1], int(arista.split()[2]), nodo_destino)
+        arista_nueva = claseNodo.Arista(arista.split()[0]+arista.split()[1], int(arista.split()[2]), nodo_destino)
         nodo_origen.agregar_arista(arista_nueva)
-
-    return nodo_inicial, nodo_final, arrayNodos[0]
+    
+    # Retornamos el nodo incial, final y todos los nodos
+    return nodo_inicial, nodo_final, arrayNodos

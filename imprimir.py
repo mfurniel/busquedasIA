@@ -1,4 +1,6 @@
 
+# Metodos para imprimir las soluciones de las busquedas con el formato de salida pedido
+
 def imprimirmapa(arrayMapa):
     for elemento in arrayMapa:
         print('Nodo: ' + elemento.nombre + ' ' + 'Valor: ' + elemento.heuristica)
@@ -21,10 +23,10 @@ def imprimirDFS(raiz):
         print(" -> ", end="")
         punta=punta.nodoshijos[0]
 
-def impimirUCS(punta):
-    # se busca del final hacia adelante debido a que los nodos tienen sus nodos padres
-    # lo que me hace buscar el camino hacia atras a la raiz.
 
+# Se busca del final hacia adelante debido a que los nodos tienen sus nodos padres
+# lo que me hace buscar el camino hacia atras a la raiz.
+def impimirUCS(punta):
     aux = punta
     orden = []
 
@@ -48,14 +50,6 @@ def impimirUCS(punta):
 
         aux=aux.nodo_padre
 
-    
-
- # while True: 
-    #     print(punta.nodo.nombre)
-    #     if punta.nodo_padre == None:
-    #         break
-    #     punta=punta.nodo_padre
-
 def imprimirGreedy(raiz):
     punta = raiz
     while True:
@@ -72,10 +66,10 @@ def imprimirGreedy(raiz):
         print(" -> ", end="")
         punta=punta.nodoshijos[0]
 
+# Se busca del final hacia adelante debido a que los nodos tienen sus nodos padres
+# lo que me hace buscar el camino hacia atras a la raiz.
 def impimirAEstrella(punta):
-    # se busca del final hacia adelante debido a que los nodos tienen sus nodos padres
-    # lo que me hace buscar el camino hacia atras a la raiz.
-
+    
     aux = punta
     orden = []
 
