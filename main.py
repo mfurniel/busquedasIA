@@ -2,35 +2,34 @@ import lectura
 import imprimir
 import claseNodo
 import random
+import busquedas
+import busquedasM
 
-mapaDeGrafos = lectura.lecturagrafo('input.txt')
-imprimir.imprimirmapa(mapaDeGrafos)
-initial = lectura.nodoinicial('input.txt','inicial')
-goal = lectura.nodoinicial('input.txt','final')
+variables_lectura = lectura.lecturagrafoM('input.txt')
 
-def bep_azar(inicial,final,mapa):
+initial = variables_lectura[0]
+goal = variables_lectura[1]
+raiz_grafo = variables_lectura[2]
 
-    raiz = claseNodo.Nodo(initial)
-    punta = raiz
-    aleatorio = random.randint(0, len(initial.aristas))
-    raiz.agregar_hijo(raiz.aristas[aleatorio][0])
-    punta = raiz.hijos[0]
+#busquedasM.bep_azar(initial,goal)
 
-    while punta != goal:
-        aleatorio = random.randint(0, len(punta.aristas))
-        punta.agregar_hijo(punta.aristas[aleatorio][0])
-        punta = punta.hijos[0]
-        
-    return raiz
+#busquedasM.bpcu(initial,goal)
 
-def bpcu_azar(inicial,final,mapa):
+#busquedasM.bg(initial,goal)
 
-    return 0
+busquedasM.a_estrella(initial,goal)
 
-def bg(inicial,final,mapa):
+#imprimir.imprimirmapa(mapa_de_nodos)
 
-    return 0
+#print(initial.nombre)
 
-def a_estrella(inicial,final,mapa):
+#raiz_grafo.recorrer()
 
-    return 0
+# initial = lectura.nodoinicial('input.txt','inicial')
+# goal = lectura.nodoinicial('input.txt','final')
+#busquedas.bep_azar(initial,goal,mapa_de_nodos)
+#busquedas.bpcu(initial,goal,mapa_de_nodos)
+print('salio?')
+
+
+
