@@ -34,7 +34,8 @@ Costo: <costo>
 
 <img src="/imagen_grafo.png" alt="texto alternativo">
 
-#Instrucciones de Uso
+# Instrucciones de Uso  
+
 El presente trabajo se desarrolló usando Python3. El cual ejecuta 4 tipos de búsquedas:
 - Búsqueda en profundidad (escogiendo un sucesor al azar)
 - Búsqueda por costo uniforme
