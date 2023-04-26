@@ -13,11 +13,11 @@ Para cada tipo de búsqueda, su código debe retornar:
 - El camino encontrado y su costo (y si es la solución óptima, que ud. puede calcular a mano) 
 - Cantidad de nodos expandidos (veces por nodo y en total) 
 
-Su código debe leer el problema (grafo) desde un archivo .txt con el siguiente formato: 
-Init: `<nodo_inicial>`
-Goal: `<nodo_objetivo>`
-`<Nodo1>` `<valor_heuristica1>`
-`<Nodo2>` `<valor_heurística2>`
+Su código debe leer el problema (grafo) desde un archivo .txt con el siguiente formato:   
+Init: `<nodo_inicial>`  
+Goal: `<nodo_objetivo>`  
+`<Nodo1>` `<valor_heuristica1>`  
+`<Nodo2>` `<valor_heurística2>`  
 …..
 `<Nodo1>`, `<nodo2>`, `<costo>` // en el caso en que exista una arista entre nodo1 y nodo2
 …..
