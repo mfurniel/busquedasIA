@@ -18,18 +18,18 @@ Init: `<nodo_inicial>`
 Goal: `<nodo_objetivo>`  
 `<Nodo1>` `<valor_heuristica1>`  
 `<Nodo2>` `<valor_heurística2>`  
-…..
-`<Nodo1>`, `<nodo2>`, `<costo>` // en el caso en que exista una arista entre nodo1 y nodo2
-…..
-
-Su código podría ser evaluado, además, cambiando los nodos de inicio y/o objetivo. 
-El formato de salida debe ser: 
-Nodo_inicial → nodo1 → nodo2 …->nodo_objetivo 
-Costo: <costo>
-`<nodo_inicial>`: número de veces que se expandió
-`<nodo1>`: número de veces que se expandió
-…. 
-
+…..  
+`<Nodo1>`, `<nodo2>`, `<costo>` // en el caso en que exista una arista entre nodo1 y nodo2  
+…..  
+  
+Su código podría ser evaluado, además, cambiando los nodos de inicio y/o objetivo.   
+El formato de salida debe ser:   
+Nodo_inicial → nodo1 → nodo2 …->nodo_objetivo   
+Costo: <costo>  
+`<nodo_inicial>`: número de veces que se expandió  
+`<nodo1>`: número de veces que se expandió  
+….   
+  
 5.2 .- (10 pts) Responda: - ¿Qué puede decir de la comparación entre los métodos implementados? En concreto, los que encontraron la solución óptima, a qué se debió? Y los que no, ¿por qué no la encontraron? - De los métodos vistos en clase, ¿hay alguno que NO retorne una solución (es decir, que se mantenga realizando búsqueda ad infinitum) en este problema? Si es así, cuál? Y si no, por qué no?
 
 <img src="/imagen_grafo.png" alt="texto alternativo">
