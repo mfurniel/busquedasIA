@@ -50,14 +50,18 @@ class ArbolDecision:
         self.nodo_padre=nodo_padre
         self.heuristica=valor
         self.nodoshijos = []
+        self.valoracumulado=0
         nodo.expandir()
 
     def agregar_nodohijo(self, nodo):   
         self.nodoshijos.append(nodo)
+    
+    def acumular(self,valor):
+        self.valoracumulado += valor
 
 # Si dos elementos tienen igual heuristica, se mezcla aleatoriamente su orden
     def __lt__(self, other):
         if self.heuristica == other.heuristica:
-            return random.choice([True, False])
+            return True
         else:
             return self.heuristica < other.heuristica

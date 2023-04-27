@@ -28,9 +28,9 @@ def a_estrella():
 
 # Se obtienen los argumentos al ejecutrar el programa
 parser = argparse.ArgumentParser()
-parser.add_argument("busqueda", help="nombre del busqueda a usar")
+parser.add_argument("busqueda", nargs='?', default="ucs", help="nombre del busqueda a usar (por defecto: ucs)")
 #dejamos el argumento por default de grafo com input.txt
-parser.add_argument("grafo", nargs='?', default="input.txt", help="nombre del archivo con el grafo")
+parser.add_argument("grafo", nargs='?', default="input.txt", help="nombre del archivo con el grafo (por defecto: input.txt)")
 
 args = parser.parse_args()
 

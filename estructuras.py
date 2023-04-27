@@ -40,3 +40,15 @@ class PriorityQueue:
         else:
             for prioridad, nodo in self.queue:
                 print(f"Prioridad: {prioridad}, Nodo: {nodo.nodo.nombre}")
+
+    def checknode(self, name):
+        for _, nodo in self.queue:
+            if nodo.nodo.nombre == name:
+                return True
+        return False
+
+    def getnode(self, name):
+        for _, nodo in self.queue:
+            if nodo.nodo.nombre == name:
+                return nodo
+        return False
