@@ -30,6 +30,13 @@ En este caso, el programa usará 'input.txt' como el archivo de grafo a leer.
 
 Es importante asegurarse de que el archivo txt de grafo se encuentre en la misma carpeta que el archivo 'main.py'. Si no se encuentra, el programa mostrará un mensaje de error indicando que el archivo no se encuentra. 
 
+Si solo ejecuta:
+
+```console
+$ python3 main.py 
+```
+la busqueda por defecto es ucs y el grafo es input.txt por defecto igualmente
+
 # BusquedasIA
 Ejercicio 5 Tarea Individual IA
 
